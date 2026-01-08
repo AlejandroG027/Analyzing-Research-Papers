@@ -1,0 +1,250 @@
+---
+title: "STAT400: Analyzing Research Papers"
+author: "Alejandro Gomez"
+date: "11/30/25"
+format: html
+---
+
+## Abstract
+
+This report outlines a strong process for reading, annotating, and understanding statistical research papers that may be complex or difficult to understand. This process includes a preliminary brief overview of the key parts of the article, a second read through for technical annotation and clarification, followed by a final read through using your notes to solidify the main ideas.
+
+For an application of this process, this report references the paper “A close look at the spatial structure implied by the CAR and SAR models” by Melanie M. Wall (2002), which examines spatial dependence structures in CAR and SAR models.
+
+## Introduction
+
+Reading through research papers that cover a variety of new topics in complicated subjects such as mathematics, statistics, computer science, and more, may present significant challenges that hinder a students ability to absorb new, complicated concepts. Understanding how to navigate the process of reading, annotating, and reproducing the information within the paper is crucial when learning at a high level.
+
+There are 3 phases of reading through a research paper:
+
+1.  Brief Overview
+2.  Annotation and Clarification
+3.  Final Overview
+
+## Brief Overview
+
+Before diving straight into the paper, it is important that we first take a brief skim of its material. A simple read through the title, abstract, and conclusions, as well as a skim over the visualizations, should give enough preliminary information as to what and how material is being covered.
+
+After this step, you should be able to answer the following questions:
+
+-   What is a main concept of the paper? (even if you may not understand them)
+-   What is something the author concluded about that concept?
+-   How did the author come to a conclusion? Through math? Coding? Tables? Graphs?
+
+## Annotation and Clarification
+
+With a preliminary and simple understanding of the material, you are now prepared to read a paper in depth. While this step is not easy, and does take some time, it is the most important part in absorbing the material at hand.
+
+As you read, start from top to bottom, and take your reading section by section, paragraph by paragraph. Do not move onto the next section unless you feel comfortable with the information contained withing your present section.
+
+As you read through each section:
+
+-   Clarify any definitions and/or vocabulary that you may be unfamiliar/weak in. Start by writing in your own words what you believe they mean, and revise your interpretation with online definitions and/or the use of ChatGPT. Using an LLM is a great way to clarify definitions with simple examples and explanations.
+
+-   When you encounter math, code, or other complex representations, write them down and take a quick moment to try and understand what is going on. Like before, it is important to use other sources to clarify the expressions. For example, you could ask ChatGPT to provide a simplified breakdown of each symbol in an expression, or what each line of code does.
+
+-   For these larger representations, break them down piece by piece, by providing a worded interpretation of what purpose they serves. As well, connect your explanations back to the vocabulary you clarified above. Finally, take note in words on what these individual parts do as a whole. Doing this makes it significantly easier to understand larger expressions in context.
+
+-   For any tables/figures, write down in your words what it being visualized/enumerated, followed by interpretations of what their individual values mean. For those you don't understand, use the internet to clarify them.
+
+## Final Overview
+
+Now that you have a strong understanding of the contents of the paper and how they relate to each other, tie all sections together. Read through the paper one last time, connecting any definitions/vocab with visualizations/tables and math/code.
+
+# Example Process
+
+In the context of our research paper by Melanie Wall, the following is an example of what this process of notetaking could look like.
+
+## Phase 1: A Brief Overview
+
+*As mentioned above, take a look at the title, abstract, conclusions, and visualizations for a brief understanding of the content. Taking short notes as you go and answering the 3 key questions is strongly advised.*
+
+Title: A close look at the spatial structure implied by the CAR and SAR models.
+
+![](abstract.png)
+
+Abstract Key Points: It is very common for spatial data to contain spatial dependence in the covariance structure, which is implied mathematically through some autoregressive model. In the case of lattice data, two common autoregressive models are the CAR and SAR models, which model spatial dependence in the covariance structure through a neighbor matrix W and an unknown correlation parameter. However, there are some impracticalities when it comes to interpreting and using these autoregressive models.
+
+![](summary1.png) ![](summary2.png) ![](summary3.png)
+
+Summary Key Points: The autoregressive models do not provide a strong way to interpret and understand spatial structure because they do not follow an intuitive or practical behavior. They are still popular considering many processes have a primary goal of determining predictors in regression, not understanding their spatial structure.
+
+*Visualizations that may be notable:*
+
+![](viz1.png) ![](viz2.png) ![](viz3.png) ![](viz4.png)
+
+What is a main concept of the paper? (even in you may not understand them)
+
+:   To demonstrate 2 methods for modeling spatial lattice data that are spatially dependent. These methods are the SAR and CAR models.
+
+What is something the author concluded about that concept?
+
+:   The SAR and CAR models do not provide a sufficient method for understanding spatial structure and dependence, considering their counter intuitive results, however they may still be good for estimating predictors in a regression practice.
+
+How did the author derive this conclusion? With Math? Coding? Tables? Graphs?
+
+:   Through math, coding, tables, and graphs. From a broad scale, it seems that models were fit on the data and compared.
+
+## Phase 2: Annotation and Clarification
+
+*As we navigate the second part of our analysis, it its crucial that we take our reading paragraph by paragraph, moving onto the next when we feel comfortable and understand the present information.*
+
+**Section 1**
+
+Lattice Data: Spatial data is often contained within regions/lattices of a whole. Each lattice collectively make up a whole region.
+
+*In this case, I did not completely understand the first paragraph, so I asked ChatGPT to simplify the explanation, and I wrote my own version of its response below. If you require further explanation, continue to ask ChatGPT more questions.*
+
+![](chat1.png)
+
+-   It is common for lattices near one another to contain observations/data that are related to each other. As a result, in regression, unaccounted variables may cause some of the lattices' errors to be spatially correlated.
+
+There are two differents ways to model spatial structure for lattice data. Both methods apply some autoregressive model across each individual lattice in the sample space.
+
+1.  Continuous Indexing
+
+-   Summary Data for each lattice are observed at the centroid/center of the lattice, and the distances between centroids determine the spatial dependency via some variogram function.
+
+-   What is meant by 'continuous indexing set': pretending that each region’s value was measured at a single point in space (centroid).
+
+*I have never heard of a 'variogram function', so we will ask ChatGPT for some help:*
+
+![](chat2.png)
+
+-   Variogram Function: A formula that quantifies how spatial dependence decreases as distances from two lattices increase. This function is incorporated into the autoregressive model by establishing the spatial covariance in the error term.
+
+2.  Discrete Indexing
+
+-   Defines a more practical and realistic structure to define spatial covariance. For example, bordering states in a country have a defined covariance structure based on if two states share a border or not.
+
+Two Popular Models for Discrete Indexing are:
+
+-   Simultaneously Autoregressive Model (SAR)
+
+-   Conditionally Autoregressive Models (CAR)
+
+On perfect, regular lattices, these models behave nicely, with the CAR model analagous to a Markov Chain and the SAR model to spatial version of an autoregressive time-series model. Because our data is contained within imperfect lattices, dependency is not well understood, because for example states have different amounts of bordering neighbors and are different shapes and sizes. The way correlation spreads across the sample space is not explicitly understood.
+
+**Section 2**
+
+*Because this section is math heavy, vocab clarifications and individual symbol component explanations are necessary.*
+
+![](viz5.png)
+
+Partition: A collection of disjoint elements that make up a whole.
+
+Lattice: Grid like structure of identically shaped parts.
+
+$Z(A_i)$: A spatial observation measured over a region. A collection of these follow a multivariate normal distribution and are correlated with each other.
+
+$\mu_i$: The mean observation for region $A_i$.
+
+$b_{ij}$: A weight coefficient implying how strongly region i depends on neighboring region(s) j.
+
+$Z(A_i) - \mu_j$: Quantified deviation of region $A_i$ response value from its expected value.
+
+The summation is a weighted combination of neighbor deviations. It measures how region i's response response value is influenced by its neighbors residual from their mean.
+
+$\epsilon_i$ : Random noise. Errors follow a normal distribution with mean 0 and diagonal **A**. Errors are independent, thus the correlation of each $Z(A_i)$ comes from $b_{ij}$.
+
+Assumed Conditions
+
+1.  $b_{ii} = 0$: A regions does not depend on itself
+2.  Simultaneous model: Each $Z(A_i)$ depends on other $Z(A_j)$ and vice versa, at the same time.
+3.  $b_{ij}$ can be known or unknown. All are contained within the spatial dependence matrix B.
+
+![](viz6.png)
+
+The CAR model defines conditional distributions for each lattice $A_i$ , given observations from all other lattices $A_j$ , excluding $A_i$.
+
+$Z(A_i) | Z(A_{-i})$: Fitted response of lattice $A_i$ given all other lattices.
+
+$\mu_i$: The expected response value for region $A_i$.
+
+$C_{ij}$: Coefficeint determining how lattice j influences lattice i. The matrix C makes up all $C_{ij}$.
+
+$\tau_i^2$: Conditional variance, the variability of each $Z(A_i)$ given $Z(A_{-i})$. Matrix T is a diagonal matrix of all $\tau_i^2$.
+
+The distribution of the CAR model follows a multivariate normal distribution with the variables specified above.
+
+*Because the two models are very similar, it is important we explicitly distinguish the difference between the two.*
+
+SAR and Car Connection:
+
+-   SAR fits the data by assuming $A_i$ depends simultaneously on its neighbors
+
+-   CAR fits the data by predicting $A_i$ using all data excluding $A_i$ itself, thus a simultaneous model is not assumed.
+
+-   Matrices B and C are very similar, as they are weights representing how much region i depends on region j. A Matrix W is implemented within these matrices to indicate whether regions are neighbors or not.
+
+$W = (w_{ij})$ : The matrix **W** contains all individual $w_{ij}$ in which the shape of the lattice determines each individual value. In context of states, Each value would be a 1 or 0, if two states are bordering neighbors or not. Other models are better for most irregular lattices. Therefore:
+
+$B = p_sW$ and $C = p_cW$ where $p_s$ and $p_c$ are spatial correlation/dependence parameters left to be estimated.
+
+**Section 3**
+
+![](viz7.png)
+
+*Lets break down the model:*
+
+$Z(A_i)$: Average SAT Verbal score in state $A_i$.
+
+$X(A_i)$: Percent of eligible students who took the exam in state $A_i$.
+
+The model:
+
+$Z(A_i) = \beta_o + \beta_1X(A_i) + \beta_2X(A_i)^2 + u(A_i)$
+
+Is a polynomial regression model where $u(A_i)$ is our spatially correlated error term.
+
+In the example, SAR, CAR, Exponential Variogram, and IID models a fit on the data and compared in the table below.
+
+![](viz8.png)
+
+This table is a collection of each predicted parameter associated with the 4 different spatial models fitted on the observed data.
+
+Our model assuming independent observations (IID), is debunked by a Moran's I test with a significant p value, indicating there is a presence of spatial autocorrelation. Because the variance parameter in the Exp. Variogram model is much smaller that the SAR and CAR models, this implies that it is the best fit model.
+
+![](viz9.png)
+
+*The wording is very vocab and complicated, so I asked ChatGPT to break it down for me, and I will write my own interpretation of what is going on.*
+
+-   The part of the regression containing the $\beta_i$ contain the large scale trend due to the effect of the percent of students taking the exam
+
+-   The part of the regression $u(A_i)$ contains the small scale spatial structure. For each model, there is a corresponding $u(A_i)$ for every state, which is the spatially correlated error term.
+
+![](viz10.png)
+
+The top left scatterplot visualizes the strong, positive, linearly correlated $u(A_i)$ for the SAR and CAR models. This tells us that the two models yield similar results in the error term, and in the outcome as well.
+
+![](viz11.png)
+
+The SAR predicted Chloropleth map is visually smooth, and we can see that first order neighboring states with many neighbors seem to have a lower correlation to each other, while the states with fewer neighbors seem to have a higher correlation. This implies a simple relationship that correlation may be influenced by the number of neighbors each region has. However, the bottom left plot in figure 4 shows us that this is not always true. Tennessee and Missouri both have 8 neighbors, but do not share similar spatial correlations. As well, Missouri is more correlated with Kansas than with Iowa, even though both states are equally neighbors.
+
+Conclusion: The SAR predicted correlations are not always driven by simple geographic logic, so there is no clear and interpretable spatial covariance structure on an irregular lattice.
+
+**Section 4**
+
+![](viz12.png)
+
+Using these visualizations, we can see that for any given $p_c$ or $p_s$ , there is variation in the correlations between among first order neighbors.
+
+Some intuitive characteristics:
+
+-   As $p_s$ and $p_c$ increase from 0, all SAR and CAR correlations monotonically increase
+
+-   As $p_s$ and $p_c$ approach the endpoints of the parameter space, all SAR and CAR correlations approach -1 and 1.
+
+Some non-intuitive characteristics:
+
+-   Correlations and their relationship between each other change depending on the value of $p_s$ and $p_c$. In other words, for $p_s = 0.5$, the corr(state 1, state 2) is greater than the corr(state 1, state 3), but if we changed $p_s = 0.6$, then it is possible that corre(state1, state 2) is less than corr(state 1, state 3).
+
+-   As $p_s$ and $p_c$ become more negative, it is possible for some correlations to switch signs, with no definitive reason why.
+
+Conclusion: Tracking the behavior of $p_s$ and $p_c$ and how they effect the correlations of first order neighboring states does not yield interpretable behaviors of the spatial correlation structure.
+
+**Section 5**
+
+To conclude, the SAR and CAR models are not good for analyzing and understanding spatial correlation structure, as many of its characteristics do not behave in an intuitive sense, and are difficult to predict. A good examples of this are the unpredictable SAR spatial correlations when analyzing the spatial correlation parameters and relationships with first order neighbors. To simplify further, even if you have specific correlation parameter with a specified weight matrix, you would not be sufficiently predict its outputted correlation between neighbors' observations.
+
+**To conclude this process of analyzing a research paper, it is important to reread the contents one last time, while referencing your notes to make sure the important ideas are clearly understood.**
